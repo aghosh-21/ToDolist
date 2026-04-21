@@ -1,4 +1,5 @@
-import { useState } from "react"
+import { useState } from "react";
+
 
 export default function LudoBoard(){
     let [moves,setMoves]=useState({red:0,green:0,yellow:0,blue:0});
@@ -6,7 +7,7 @@ export default function LudoBoard(){
     let updateblue=()=>{
       
         console.log(`moves.blue=${moves.blue}`);
-       // setMoves({...moves,blue:moves.blue + 1});//by spread new copy was updated so change was made  // use {}for js
+       // setMoves({...moves,blue:moves.blue + 1});//by sending new object copy change is made  // use {}for js
 
        setMoves((prevMoves)=>{
          return {... prevMoves,blue:prevMoves.blue + 1};
