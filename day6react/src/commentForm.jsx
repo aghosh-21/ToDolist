@@ -1,6 +1,8 @@
 import { useState } from "react";
+import { useFormik } from 'formik';
 
-export default function CommentForm() {
+// Destructure props here! by {}
+export default function CommentForm({addnewComment}) {
   let [formData, setFromData] = useState({
     username: "",
     remarks: "",
@@ -16,10 +18,23 @@ export default function CommentForm() {
     });
   };
 
-  let handleSubmit=(e)=>{
-    console.log(formData);
+  let handleSubmit = (e) => {
     e.preventDefault();
-  }
+    if (formData.rating >= 1 && formData.rating <= 5) {
+      
+      addnewComment(formData); // newly add see this
+
+      console.log(formData);
+      setFromData({
+        username: "",
+        remarks: "",
+        rating: 5,
+      });
+    } else {
+      alert("rating must be in between 1to 5");
+      return;
+    }
+  };
 
   return (
     <div>
@@ -54,6 +69,8 @@ export default function CommentForm() {
           id="rating"
           value={formData.rating}
           onChange={handleFormChange}
+          min={1}
+          max={5}
         />
         <br />
         <button>Add Comment</button>
